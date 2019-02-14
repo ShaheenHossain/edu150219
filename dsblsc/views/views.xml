@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--<record model="ir.ui.view" id="import_previous_student_list">-->
+      <!--<field name="name">Import Previous Students</field>-->
+      <!--<field name="model">dsblsc.import.previous.student</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<tree editable="bottom">-->
+          <!--<field name="name"/>-->
+          <!--<field name="date"/>-->
+          <!--<field name="import_qty"/>-->
+          <!--<field name="register_id"/>-->
+          <!--<field name="level"/>-->
+          <!--<field name="import_group"/>-->
+          <!--<field name="import_section"/>-->
+          <!--<field name="assign_class"/>-->
+          <!--<field name="students_to_assign"/>-->
+        <!--</tree>-->
+      <!--</field>-->
+    <!--</record>-->
+    <!--<record model="ir.ui.view" id="import_previous_student_form">-->
+      <!--<field name="name">Import Previous Students</field>-->
+      <!--<field name="model">dsblsc.import.previous.student</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+          <!--<group>-->
+            <!--<field name="name"/>-->
+            <!--<field name="date"/>-->
+            <!--<field name="import_qty"/>-->
+            <!--<field name="register_id"/>-->
+            <!--<field name="level"/>-->
+            <!--<field name="assign_class"/>-->
+            <!--<field name="students_to_assign"/>-->
+          <!--</group>-->
+          <!--<group>-->
+             <!--<field name="import_group"/>-->
+            <!--<field name="import_section"/>-->
+          <!--</group>-->
+          <!--<group name="csv">-->
+	        <!--<field name="csv_file" />-->
+	      <!--</group>-->
+
+	      <!--<footer>-->
+            <!--<button name="import_csv" type="object"-->
+                    <!--string="Import" class="oe_highlight"/>-->
+            <!--<button special="cancel" string="Cancel"/>-->
+          <!--</footer>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+<!--<record id="action_imort_previous_students_tree_form" model="ir.actions.act_window">-->
+        <!--<field name="name">Import previous Student</field>-->
+        <!--<field name="res_model">dsblsc.import.previous.student</field>-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+
+    <!--</record>-->
+    <!--<menuitem action="action_imort_previous_students_tree_form" id="menu_import_previous_students" sequence="1"/>-->
+  </data>
+</odoo>

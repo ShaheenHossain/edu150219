@@ -1,0 +1,47 @@
+<odoo>
+  <data>
+
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="eschool.action_window">
+      <field name="name">eschool window</field>
+      <field name="res_model">eschool.eschool</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="eschool.action_server">
+      <field name="name">eschool server</field>
+      <field name="model_id" ref="model_eschool_eschool"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="eschool" id="eschool.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="eschool.menu_1" parent="eschool.menu_root"/>
+    <menuitem name="Menu 2" id="eschool.menu_2" parent="eschool.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="eschool.menu_1_list" parent="eschool.menu_1"
+              action="eschool.action_window"/>
+    <menuitem name="Server to list" id="eschool" parent="eschool.menu_2"
+              action="eschool.action_server"/>
+    -->
+  </data>
+</odoo>

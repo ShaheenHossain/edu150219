@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="import_previous_student" model="ir.ui.view">
+        <field name="name">import.previous.student</field>
+        <field name="model">education.import.previous.student</field>
+        <field name="arch" type="xml">
+            <form string=">import">
+                <group class="oe_title" string="Import ">
+
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="import_qty"/>
+                        <field name="register_id"/>
+                        <field name="level" invisible="1"/>
+                        <field name="assign_class" domain="[('class_id.id','=',level)]"/>
+                    </group>
+                    <group string="Previous Data">
+                        <field name="import_group"/>
+                        <field name="import_section"/>
+                    </group>
+                <field name="students_to_assign">
+                    <tree>
+                        <field name="application_no"/>
+                        <field name="name"/>
+                        <field name="roll_no"/>
+
+                    </tree>
+                </field>
+
+                <footer>
+                    <button name="import_students" string="Import" type="object" class="btn btn-sm btn-primary"/>
+                    <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_previous_student" model="ir.actions.act_window">
+        <field name="name">Import student</field>
+        <field name="res_model">education.import.previous.student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+
+    </record>
+
+    <menuitem action="action_import_previous_student" name="Import"
+              id="menu_action_import_previous_student" sequence="5" groups="base.group_no_one"/>
+
+
+</odoo>

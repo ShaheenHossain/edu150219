@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sms_gateway_me,access_sms_gateway_me,sms_frame.model_sms_gateway_me,education_core.group_education_principal,1,1,1,0
+access_default_absent_sms,access_default_absent_sms,eschool_sms.model_default_absent_sms,education_core.group_education_principal,1,1,1,0

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_education_syllabus_tree" model="ir.ui.view">
+        <field name="name">education.syllabus.tree</field>
+        <field name="model">education.syllabus</field>
+        <field name="arch" type="xml">
+            <tree string="Syllabus">
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="subject_id"/>
+                <field name="paper"/>
+                <!--<field name="total_hours"/>-->
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_syllabus_form" model="ir.ui.view">
+        <field name="name">education.syllabus.form</field>
+        <field name="model">education.syllabus</field>
+        <field name="arch" type="xml">
+            <form string="Syllabus">
+                <sheet>
+
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="display"/>
+                        </group>
+                        <group col="4">
+
+                            <field name="academic_year" required="1"/>
+                            <field name="class_id" required="1"/>
+                            <field name="divisional" required="1" attrs="{'invisible': [('has_group', '=',0)]}"/>
+                             <field name="has_group" required="1" attrs="{'invisible': True}"/>
+                            <field name="division_id" attrs="{'invisible': [('divisional', '=',False)]}"/>
+                        </group>
+                        <group col="4">
+                            <field name="subject_id"/>
+                            <field name="paper"/>
+                            <!--<field name="total_hours"/>-->
+                        </group>
+
+                    <group col="4">
+
+                        <field name="subject_type"/>
+                        <field name="selection_type"/>
+                        <field name="evaluation_type"/>
+                        <field name="description"/>
+                    </group>
+                    <group col="4"  string="Mark Distribution">
+                        <group col="4">
+                            <label string="Exam Type"/>
+                            <label string="Max Mark"/>
+                            <label string="Pass Mark"/>
+                            <field name="tut_mark"/>
+                             <field name="tut_pass" nolabel='1'/>
+                            <field name="subj_mark"/>
+                            <field name="subj_pass" nolabel='1'/>
+                            <field name="obj_mark"/>
+                            <field name="obj_pass" nolabel='1'/>
+                            <field name="prac_mark"/>
+                            <field name="prac_pass" nolabel='1'/>
+                            <field name="total_mark"/>
+                            <field name="pass_mark" nolabel='1'/>
+                        </group>
+                    </group>
+                </sheet>
+                <group>
+                    <field name="compulsory_for">
+                        <tree>
+                            <field name="student_id"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+     <record id="view_education_syllabus_search" model="ir.ui.view">
+        <field name="name">Education Syllabus</field>
+        <field name="model">education.syllabus</field>
+        <field name="arch" type="xml">
+            <search string="Syllabus">
+                <field name="academic_year"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='Batch' name="group_batch" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'academic_year'}"/>
+                    <filter string='Level' name="group_level" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'class_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_education_syllabus" model="ir.actions.act_window">
+        <field name="name">Syllabus</field>
+        <field name="res_model">education.syllabus</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{ 'search_default_group_batch':1,'search_default_group_level':1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first syllabus here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem action="action_education_syllabus" parent="menu_education_class_conf"
+              id="menu_action_education_syllabus" sequence="5"/>
+
+</odoo>

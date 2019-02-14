@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sms_attendance_sheet_more_menu_server_action" model="ir.actions.server">
+            <field name="name">SMS Absent Student</field>
+            <field name="model_id" ref="education_attendances.model_education_attendance"/>
+            <field name="binding_model_id" ref="education_attendances.model_education_attendance"/>
+            <field name="condition">True</field>
+            <field name="state">code</field>
+            <field name="code">action = record.sms_action()</field>
+        </record>
+
+        <record model="ir.ui.view" id="default_absent_sms_form">
+          <field name="name">Defalult Abssent SMS</field>
+          <field name="model">default.absent.sms</field>
+          <field name="arch" type="xml">
+      	      <form>
+                  <group>
+      	          <field name="name"/>
+                  <field name="from_number"/>
+                  <field name="template_id"/>
+                  </group>
+      	      </form>
+      	  </field>
+      </record>
+
+        <record id="act_default_sms_form" model="ir.actions.act_window">
+            <field name="name">Defalul Absent SMS</field>
+            <field name="res_model">default.absent.sms</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="default_absent_sms_menu" parent="education_attendances.student_attendance_main_menu" name="Absent SMS"
+                  action="act_default_sms_form"
+                  sequence="20"/>
+
+
+    </data>
+</odoo>

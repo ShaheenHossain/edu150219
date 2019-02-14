@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <templates xml:space="preserve">
+        <t t-extend="DashboardShare">
+            <t t-jquery="div.o_web_settings_dashboard_share" t-operation="replace">
+                <div class="oe_about">
+                    <img class="oe_logo" src="/web/static/src/img/logo2.png"/>
+                      <h3>Version <t t-esc="version_info.server_version"/></h3>
+                      <div class="oe_bottom">
+                        <p>Copyright Â© 2004-TODAY OpenERP SA. All Rights Reserved.<br />
+                            OpenERP is a trademark of the <a target="_blank" href="http://openerp.com/" style="text-decoration: underline;">OpenERP SA Company</a>.</p>
+                        <p>Licenced under the terms of <a target="_blank" href="http://www.gnu.org/licenses/agpl.html" style="text-decoration: underline;">GNU Affero General Public License</a></p>
+                        <p>For more information visit <a target="_blank" href="http://openerp.com/" style="text-decoration: underline;">OpenERP.com</a></p>
+                      </div>
+                </div>
+            </t>
+        </t>
+        </templates>
+
+    </data>
+</odoo>

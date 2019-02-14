@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_exam_marksheet">
+            <t t-call="web.html_container">
+                <t t-foreach="get_objects(docs)" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <style>
+                                table, th, td {
+                                     border: 1px solid black;
+                                    }
+                            </style>
+                            <table >
+                                <tr>
+                                    <td><strong>ID : <span t-field="o.student_id.id"/></strong></td>
+                                    <td colspan="5" rowspan="5">
+                                        <table>
+                                    <tr><td>letter Grade </td><td>Grade interval </td><td>point</td></tr>
+
+                                                <t t-foreach="get_gradings(o)" t-as="g">
+                                                    <tr><td> <span t-field="g.result"/></td>
+                                                        <td> <span t-field="g.min_per"/>-<span t-field="g.max_per"/>%</td>
+                                                        <td> <span t-field="g.score"/></td>
+                                                    </tr>
+                                                </t>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> name <span t-field="o.student_id.name"/>
+                                                        <span t-field="o.student_id.middle_name"/>
+                                                        <span t-field="o.student_id.last_name"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Father : <span t-field="o.student_id.father_name"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Mother : <span t-field="o.student_id.mother_name"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <table>
+                                        <tr>
+                                            <td rowspan="3"><strong> Subject </strong></td>
+                                            <td rowspan="3"><strong> Paper </strong></td>
+                                            <td colspan="10"><strong><span  t-field="o.name"/> </strong></td>
+
+                                        </tr>
+                                        <tr>        <!-- heading for table -->
+                                            <td rowspan="2"><strong> Full Mark </strong></td>
+                                            <td rowspan="2"><strong> TUT </strong></td>
+                                            <td rowspan="2"><strong> Sub </strong></td>
+                                            <td rowspan="2"><strong> Obj </strong></td>
+                                            <td rowspan="2"><strong> Prac </strong></td>
+                                            <td rowspan="2"><strong> Total </strong></td>
+                                            <td rowspan="2"><strong> Highest </strong></td>
+                                            <td rowspan="2"><strong> LG </strong></td>
+                                            <td rowspan="2"><strong> GP </strong></td>
+                                            <td rowspan="2"><strong> GPA </strong></td>
+
+                                        </tr>
+                                        <tr></tr>
+                                        <t t-foreach="get_subjects(o)" t-as="s" >
+                                            <tr>
+                                            <td ><strong>  <span t-field="s.subject_id.subject_id.name"/> </strong></td>
+                                            <td ><strong> <span t-field="s.subject_id.paper"/> </strong></td>
+                                            <td ><strong><span t-field="s.max_mark"/></strong></td>
+                                            <td ><strong> <span t-field="s.tut_mark"/> </strong></td>
+                                            <td ><strong> <span t-field="s.subj_mark"/> </strong></td>
+                                            <td ><strong> <span t-field="s.obj_mark"/> </strong></td>
+                                            <td ><strong> <span t-field="s.prac_mark"/> </strong></td>
+                                            <td ><strong> <span t-field="s.mark_scored"/> </strong></td>
+                                            <td ><strong> Highest </strong></td>
+                                            <td ><strong><span t-field="s.grade"/> </strong></td>
+                                            <td ><strong> <span t-field="s.score"/> </strong></td>
+                                            <td ><strong> GPA </strong></td>
+
+                                        </tr>
+                                        </t>
+                                    </table>
+                                </tr>
+                            </table>
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <div class="col-xs-2" style="margin:auto;">
+                                </div>
+                                <center>
+                                    <div class="col-xs-8" style="margin:auto">
+                                        <table class="table table-condensed" style="border: 3px solid black !important;">
+                                            <tr>
+                                                <td width="40%">
+                                                    <p style="text-align:center;">
+                                                        <strong><span t-field="o.student_name"/></strong>
+                                                    </p>
+                                                </td>
+                                                <td width="60%">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <p style="text-align:right;padding-top:30px;"><strong>ID : </strong></p>
+                                                                <p style="text-align:right;"><strong>Gender : </strong></p>
+                                                                <p style="text-align:right;"><strong>Blood Group : </strong></p>
+                                                            </td>
+                                                            <td>
+                                                                <!--<p style="text-align:left;padding-top:30px;padding-left:10px;"  t-field="o.class_id"/>-->
+                                                                <!--<p style="text-align:left;padding-left:10px;" t-field="o.division_id"/>-->
+                                                                <!--<p style="text-align:left;padding-left:10px;" t-field="o.student_name"/>-->
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

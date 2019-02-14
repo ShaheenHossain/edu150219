@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sms_message_more_menu_server_action" model="ir.actions.server">
+            <field name="name">Process Queued SMS</field>
+            <field name="model_id" ref="model_sms_message"/>
+            <field name="condition">True</field>
+            <field name="state">code</field>
+            <field name="code">action = record. process_sms_queue(self, queue_limit)</field>
+        </record>
+        
+        <record id="sms_message_more_menu_client_action" model="ir.values">
+	    <field name="key2" eval="'client_action_multi'" />
+	    <field name="model" eval="'sms.message'"/>
+	    <field name="name">Process Queued SMS</field>
+	    <field name="value" eval="'ir.actions.server,%d'%sms_message_more_menu_server_action"/>
+        </record>
+        
+
+    </data>
+</openerp>

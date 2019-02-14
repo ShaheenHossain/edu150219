@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+
+
+    <record id="eschool_res_partner_inherit" model="ir.ui.view">
+      <field name="name">eschool.res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page name='bengali' string="বাংলা">
+                        <group name="container_bengali">
+                            <field name="name_b" placeholder="নামের প্রথম অংশ"/>
+                            <!--<field name="middle_name_b" placeholder="নামের মধ্যাংশ"/>-->
+                            <!--<field name="last_name_b" placeholder="নামের শেষাংশ"/>-->
+
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+    </record>
+      <record id="eschool_education_res_partner_inherit" model="ir.ui.view">
+      <field name="name">eschool.education.res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="education_core.education_view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_parent']" position="after">
+                    <field name="nid_no"/>
+                    <field name="car_no"/>
+                    <field name="gender"/>
+                </xpath>
+
+            </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_exam_academic_transcript">
+            <t t-call="web.html_container">
+                <t t-set="exams" t-value="get_exams(docs)" />
+                <t t-set="mark_colum" t-value="1"/>
+                <t t-set="tut_mark" t-value="false"/>
+                <t t-set="subj_mark" t-value="false"/>
+                <t t-set="obj_mark" t-value="false"/>
+                <t t-set="prac_mark" t-value="false"/>
+                <t t-set="additional_subject" t-value="0"/>
+                <t t-set="extra_subject" t-value="0"/>
+
+
+
+
+                <t t-foreach="exams"  t-as="ex">
+                    <t t-foreach="get_subjects(ex,'general')" t-as="sub">
+                        <t t-if="sub.subject_id.tut_mark">
+                            <t t-set="tut_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.subj_mark>0">
+                            <t t-set="subj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.obj_mark>0">
+                            <t t-set="obj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.prac_mark>0">
+                            <t t-set="prac_mark" t-value="1"/>
+                        </t>
+                    </t>
+                    <t t-foreach="get_subjects(ex,'additional')" t-as="sub">
+                        <t t-if="sub.subject_id.tut_mark>0">
+                            <t t-set="tut_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.subj_mark>0">
+                            <t t-set="subj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.obj_mark>0">
+                            <t t-set="obj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.prac_mark>0">
+                            <t t-set="prac_mark" t-value="1"/>
+                        </t>
+                        <t t-set="additional_subject" t-value="1"/>
+                    </t>
+                    <t t-foreach="get_subjects(ex,'extra')" t-as="sub">
+                        <t t-if="sub.subject_id.tut_mark>0">
+                            <t t-set="tut_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.subj_mark>0">
+                            <t t-set="subj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.obj_mark>0">
+                            <t t-set="obj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subject_id.prac_mark>0">
+                            <t t-set="prac_mark" t-value="1"/>
+                        </t>
+                        <t t-set="extra_subject" t-value="1"/>
+                    </t>
+                </t>
+
+                    <t t-if="tut_mark==1">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+                    <t t-if="prac_mark==1">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+                    <t t-if="subj_mark==1">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+                    <t t-if="obj_mark==1">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+
+                <t t-foreach="get_students(docs)" t-as="student">
+                    <t t-call="web.external_layout">
+                        <style>
+                            table, th, td {
+                                     border: 1px solid black;
+                                    padding-bottom:3px;
+                                    padding-left:3px;
+                                    padding-top:3px;
+                                    padding-right:3px;
+                                    }
+                            .right_top{
+                            float:right;
+                            padding-top:90px;
+                            }
+                            .right{
+                            float:right;
+                            padding-top:10px;
+                            }
+                        </style>
+                        <div class="page">
+                            <div class="oe_structure">
+
+                                <div class="row">
+                                    <div class="right_top" >
+                                        <table>
+                                            <tr><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
+
+                                                <t t-foreach="get_gradings(o)" t-as="g">
+                                                    <tr><td> <span t-field="g.result"/></td>
+                                                        <td> <span t-field="g.min_per"/>-<span t-field="g.max_per"/>%</td>
+                                                        <td> <span t-field="g.score"/></td>
+                                                    </tr>
+                                                </t>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+<record id="legal_landscape" model="report.paperformat">
+            <field name="name">Legal Landscape</field>
+            <field name="default" eval="True" />
+            <field name="format">Legal</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">35</field>
+            <field name="margin_bottom">28</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">25</field>
+            <field name="dpi">100</field>
+        </record>
+
+         <record id="A4_portrait" model="report.paperformat">
+            <field name="name">A4 Portrait</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">28</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">30</field>
+            <field name="dpi">100</field>
+        </record>
+<report
+            id="action_exam_academic_transcript"
+            model="academic.transcript"
+            string="Academic Transcript"
+            report_type="qweb-html"
+            paperformat="legal_landscape"
+            name="education_exam.report_exam_academic_transcript"
+            file="education_exam.report_exam_academic_transcript"
+        />
+<report
+            id="action_dsblsc_marksheet"
+            model="academic.transcript"
+            string="Dsblsc Marksheet"
+            report_type="qweb-html"
+            paperformat="legal_landscape"
+            name="education_exam.report_dsblsc_marksheet"
+            file="education_exam.report_dsblsc_marksheet"
+        />
+        <report
+            id="action_exam_evaluation"
+            model="academic.transcript"
+            string="Exam Evaluation"
+            report_type="qweb-html"
+            paperformat="legal_landscape"
+            name="education_exam.report_exam_evaluation"
+            file="education_exam.report_exam_evaluation"
+        />
+    <report
+            id="action_exam_academic_transcript1"
+            model="academic.transcript"
+            string="Academic Transcript1"
+            report_type="qweb-html"
+            paperformat="legal_landscape"
+            name="education_exam.report_exam_academic_transcript1"
+            file="education_exam.report_exam_academic_transcript1"
+        />
+        <report
+            id="action_exam_academic_transcript_s"
+            model="academic.transcript"
+            string="Academic Transcript S"
+            report_type="qweb-html"
+            paperformat="A4_portrait"
+            name="education_exam.report_exam_academic_transcript_s"
+            file="education_exam.report_exam_academic_transcript"
+        />
+        <report
+            id="action_exam_academic_transcript_dsblsc"
+            model="academic.transcript"
+            string="Academic Transcript DSBLSC"
+            report_type="qweb-html"
+            paperformat="A4_portrait"
+            name="education_exam.report_exam_academic_transcript_dsblsc"
+            file="education_exam.report_exam_academic_transcript"
+        />
+        <report
+            id="action_exam_academic_transcript_new"
+            model="academic.transcript"
+            string="Academic Transcript New"
+            report_type="qweb-pdf"
+            paperformat="A4_portrait"
+            name="education_exam.report_exam_academic_transcript_new"
+            file="education_exam.report_exam_academic_transcript"
+        />
+        <report
+            id="action_merit_list"
+            model="academic.transcript"
+            string="Merit List"
+            report_type="qweb-html"
+            paperformat="A4_portrait"
+            name="education_exam.report_merit_list"
+            file="education_exam.report_merit_list"
+        />
+
+
+    </data>
+</odoo>

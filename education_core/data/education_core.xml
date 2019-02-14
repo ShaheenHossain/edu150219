@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="education_academic_year_data" model="education.academic.year">
+            <field name="name">2018-2019</field>
+            <field name="ay_start_date">01-06-2018</field>
+            <field name="ay_end_date">01-04-2019</field>
+            <field name="ay_code">150</field>
+            <field name="active">1</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="document_type_data" model="document.document">
+            <field name="name">TC</field>
+            <field name="description">Transfer Certificate</field>
+        </record>
+
+        <record id="document_type_data2" model="document.document">
+            <field name="name">Birth Certificate</field>
+            <field name="description">Birth Certificate of the student</field>
+        </record>
+
+        <record id="reject_reason_data" model="application.reject.reason">
+            <field name="name">Low Marks</field>
+        </record>
+
+
+
+
+        <record id="education_mother_tongue_data1" model="education.mother.tongue">
+            <field name="name">Bengali</field>
+            <field name="code">Ben</field>
+        </record>
+        <record id="education_mother_tongue_data2" model="education.mother.tongue">
+            <field name="name">English</field>
+            <field name="code">Eng</field>
+        </record>
+        <record id="education_amenities_data1" model="education.amenities">
+            <field name="name">AC</field>
+            <field name="code">AC1</field>
+        </record>
+
+        <record id="education_amenities_data2" model="education.amenities">
+            <field name="name">Drinking Water</field>
+            <field name="code">DW1</field>
+        </record>
+
+        <record id="education_amenities_data3" model="education.amenities">
+            <field name="name">Projector</field>
+            <field name="code">PR1</field>
+        </record>
+
+
+        <record id="education_medium_data" model="education.medium">
+            <field name="name">Bengali</field>
+        </record>
+        <record id="education_medium_data1" model="education.medium">
+            <field name="name">English</field>
+        </record>
+
+    </data>
+</odoo>

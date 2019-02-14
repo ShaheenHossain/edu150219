@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record id="view_exam_marksheet_wizard_form" model="ir.ui.view">
+        <field name="name">education.exam.marksheet.wizard</field>
+        <field name="model">education.tabulation.wizerd</field>
+        <field name="arch" type="xml">
+            <form string="exam result">
+                <group>
+                    <field name="exam_id"/>
+                    <field name="academic_year"/>
+                    <!--<field name="class_id"/>-->
+                    <field name="division_id"/>
+                    <field name="section_id"/>
+                    <field name="student_id"/>
+                    <field name="subject_id"/>
+
+                </group>
+            </form>
+        </field>
+    </record>
+<record id="view_exam_marksheet_wizard_tree" model="ir.ui.view">
+        <field name="name">education.exam.marksheet.wizard.tree</field>
+        <field name="model">education.tabulation.wizerd</field>
+        <field name="arch" type="xml">
+            <tree string="exam result">
+                    <field name="exam_id"/>
+                    <field name="academic_year"/>
+                    <!--<field name="class_id"/>-->
+                    <field name="division_id"/>
+                    <field name="section_id"/>
+                    <field name="student_id"/>
+                    <field name="subject_id"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_exam_marksheet_wizard" model="ir.actions.act_window">
+        <field name="name">exam.marksheet.wizard</field>
+        <field name="res_model">education.tabulation.wizerd</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <menuitem action="action_exam_marksheet_wizard" name="tabulation" parent="education_core.menu_education_main_menu"
+              id="menu_action_exam_marksheet_wizard" sequence="4"/>
+
+
+    </data>
+</odoo>

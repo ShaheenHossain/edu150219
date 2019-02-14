@@ -1,0 +1,20 @@
+id,code,description,name
+__export__.education_subject_1_a77a3a3e,Bn,,Bangla
+__export__.education_subject_2_4229f736,En,,English
+__export__.education_subject_3_c452cbc4,Math,,Math
+__export__.education_subject_4_c5902a8b,MEd,,Moral Edu
+__export__.education_subject_5_5b91b65d,Sci,,Science
+__export__.education_subject_6_cb1de9cd,ict,,ICT
+__export__.education_subject_7_d6cb29ba,rel&moraledu,,Rel & Moral Edu
+__export__.education_subject_8_21befee1,econo,,Economics
+__export__.education_subject_9_c5811373,hbglbcp,,HB & Glb CP.
+__export__.education_subject_10_9bfab2f0,geo,,Geography
+__export__.education_subject_11_af256e4a,genscience,,Gen Science
+__export__.education_subject_12_9f58f13a,homescience,,Home Science
+__export__.education_subject_13_dcbb56bd,caredu,,Car Edu
+__export__.education_subject_14_5e9b3106,phytraining,,Phy. Training
+__export__.education_subject_15_806fbb90,bgi,,BGI
+__export__.education_subject_16_22167690,physics,,Physics 
+__export__.education_subject_17_5c3da78e,chemistry,,Chemistry
+__export__.education_subject_18_57f0b249,highermath,,H. Math
+__export__.education_subject_19_da989b9c,biology,,Biology

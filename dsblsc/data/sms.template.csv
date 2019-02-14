@@ -1,0 +1,3 @@
+id,model_id/id,template_body,from_mobile,from_mobile_verified_id/id,name
+__export__.sms_template_1,education_core.model_education_student,"Dear Guardian, Your pupil ${object.display_name},${object.class_id},${object.import_roll_no} is absent at school today.",DSBLSC,__export__.sms_number_1,Full day Absent SMS Template
+__export__.sms_template_2,education_core.model_education_student,"Dear Guardian, Your pupil ${object.display_name}, is half day absent at school today.",DSBLSC,__export__.sms_number_1,Half day Absent SMS Template

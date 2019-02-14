@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_education_class_tree" model="ir.ui.view">
+        <field name="name">education.class.tree</field>
+        <field name="model">education.class</field>
+        <field name="arch" type="xml">
+            <tree string="Standard">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="section_ids"/>
+                <field name="division_ids"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_education_class_history_tree" model="ir.ui.view">
+        <field name="name">education.class.history.tree</field>
+        <field name="model">education.class.history</field>
+        <field name="arch" type="xml">
+            <tree string="Standard">
+                <field name="student_id"/>
+                <field name="academic_year_id"/>
+                <field name="class_id"/>
+                <field name="level"/>
+                <field name="section"/>
+                <field name="roll_no"/>
+            </tree>
+        </field>
+    </record>
+    <record id="education_class_history_search" model="ir.ui.view">
+        <field name="name">Student-Class History</field>
+        <field name="model">education.class.history</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <!--<field name="class_id"/>-->
+                <field name="student_id"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='Class' name="group_batch" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'academic_year_id'}"/>
+                    <filter string='Class' name="group_level" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'level'}"/>
+                    <filter string='Class' name="group_section" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'class_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="view_education_class_history_form" model="ir.ui.view">
+        <field name="name">education.class.history.form</field>
+        <field name="model">education.class.history</field>
+        <field name="arch" type="xml">
+            <form string="Standard">
+                <group>
+                    <field name="student_id"/>
+                    <field name="academic_year_id"/>
+                    <field name="class_id"/>
+                    <field name="level"/>
+                    <field name="section"/>
+                    <field name="roll_no"/>
+                    <field name="from_date"/>
+                    <field name="till_date"/>
+                    <field name="compulsory_subjects" domain="[('class_id','=',level),('selection_type','=','compulsory')]"
+                           widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="selective_subjects" domain="[('class_id','=',level),('selection_type','=','elective')]"
+                           widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="optional_subjects"  domain="[('class_id','=',level),('selection_type','=','elective')]"
+                           widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_education_class_form" model="ir.ui.view">
+        <field name="name">education.class.form</field>
+        <field name="model">education.class</field>
+        <field name="arch" type="xml">
+            <form string="Standard">
+                <div class="oe_button_box" name="button_box">
+                    <button name="view_division" type="object" widget="statinfo" class="oe_stat_button" icon="fa-user" >
+                        <field name="division_count" widget="statinfo" string="Groups"/>
+                    </button>
+                    <button name="view_section" type="object" widget="statinfo" class="oe_stat_button" icon="fa-list-ol" >
+                            <field name="section_count" widget="statinfo" string="Sections"/>
+                    </button>
+                </div>
+                <group >
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </group>
+                <group>
+                    <group string="divisions">
+                         <field name="division_ids" nolabel="1" />
+                    </group>
+                    <group string="Sections">
+                         <field name="section_ids" nolabel="1" />
+                    </group>
+                </group>
+                <notebook>
+                        <page string="Syllabus">
+                            <field name="syllabus_ids" nolabel="1">
+                                <tree string="Syllabus Items" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="subject_id" required="1"/>
+                                    <!--<field name="total_hours"/>-->
+                                    <field name="description"/>
+                                    <!--<field name="company_id"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_education_class_tree" model="ir.actions.act_window">
+        <field name="name">Standard</field>
+        <field name="res_model">education.class</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first class here.
+            </p>
+        </field>
+    </record>
+    <record id="action_education_class_history" model="ir.actions.act_window">
+        <field name="name">Students History</field>
+        <field name="res_model">education.class.history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="context">{ 'search_default_group_batch':1,'search_default_group_section':1,'search_default_group_level':1}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <menuitem action="action_education_class_history" parent="menu_education_class_conf"
+              id="menu_education_class_history" sequence="1"/>
+    <menuitem action="action_education_class_tree" parent="menu_education_class_conf"
+              id="menu_action_education_class" sequence="1"/>
+
+</odoo>

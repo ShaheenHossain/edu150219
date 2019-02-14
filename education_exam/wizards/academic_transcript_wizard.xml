@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="academic_transcript_wizard_form" model="ir.ui.view">
+            <field name="name">academic.transcript.wizard.form</field>
+            <field name="model">academic.transcript</field>
+            <field name="arch" type="xml">
+                <form >
+                    <button name="generate_results" type="object" string="Calculate Result" attrs="{'invisible': [('state', '=', 'done')]}"/>
+
+                    <group>
+                        <field name="academic_year" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                        <field name="level" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'invisible':[('academic_year','=',False)]}"/>
+                        <field name="exams" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'invisible':[('level','=',False)]}" domain="[('class_id','=',level),('academic_year','=',academic_year)]"/>
+                        <field name="specific_section" options="{'no_quick_create': True, 'no_create_edit' : True}" />
+                        <field name="section" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{ 'invisible':[('specific_section','=',False)]}"  domain="[('class_id','=',level),('academic_year_id','=',academic_year)]"/>
+                        <field name="specific_student" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{ 'invisible':[('specific_section','=',False)]}"/>
+                        <field name="student" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'invisible': [('specific_student','=',False)]}"  domain="[('class_id','=',section)]"/>
+                        <field name="state"  invisible="True"/>
+
+                    </group>
+
+                </form>
+            </field>
+        </record>
+         <record id="academic_transcript_wizard_tree" model="ir.ui.view">
+            <field name="name">academic.transcript.wizard.tree</field>
+            <field name="model">academic.transcript</field>
+            <field name="arch" type="xml">
+                <tree >
+                        <field name="academic_year"/>
+                        <field name="exams"/>
+                        <field name="student"/>
+                </tree>
+            </field>
+        </record>
+        <record id="act_academic_transcript_wizard" model="ir.actions.act_window">
+            <field name="name">academic Transcript</field>
+            <field name="res_model">academic.transcript</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <!--<field name="context">{'search_default_group_class_id': 1, 'search_default_group_division_id':1,-->
+                <!--'search_default_group_exam_id':1}-->
+            <!--</field>-->
+        </record>
+
+
+
+        <menuitem id="academic_transcript_sub_menu" parent="education_exam.examination_result_main_menu"
+                  action="act_academic_transcript_wizard" name="Academic Transcript" sequence="20" groups="base.group_user"/>
+
+    </data>
+</odoo>

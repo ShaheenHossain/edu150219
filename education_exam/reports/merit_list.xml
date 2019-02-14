@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_merit_list">
+            <t t-call="web.html_container">
+                <t t-foreach="get_sections(docs)" t-as="section">
+                <t t-set="subjects" t-value="get_subjects(section,docs)"/>
+
+                     <t t-call="web.external_layout">
+                        <t t-set="exam_list" t-value="get_exams(docs)" />
+                          <t t-set="result" t-value="get_merit_list(docs)" />
+                         <t t-set="sections" t-value="result.section.unique()"/>
+                         <t t-set="exam_count" t-value="0"/>
+
+                         <t t-foreach="exam_list" t-as="exam">
+                             <t t-set="exam_count" t-value="exam_count+1"/>
+                         </t>
+                        <style>
+                            table, th, td {
+                                     border: 1px solid black;
+                                    padding-bottom:3px;
+                                    padding-left:3px;
+                                    padding-top:3px;
+                                    padding-right:3px;
+                                    }
+                            rotate(-90deg);-webkit-transform: rotate(-90deg);-moz-transform: rotate(-90deg);  -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg);
+                            .right_top{
+                            float:right;
+                            padding-top:0px;
+                            }
+                            .left_top{
+                            float:left;
+                            padding-top:0px;
+                            }
+                            .center_top{
+                            float:left;
+                            padding-top:0px;
+                            padding-left:500px;
+                            }
+                            .right{
+                            float:right;
+                            padding-top:10px;
+                            }
+                            .rotatetext{
+                                writing-mode: vertical-rl;
+                                text-orientation: mixed;
+                            }
+                        </style>
+                        <div class="page">
+                            <div class="oe_structure">
+                                <div class="row" style="text-align: center;"><h4>
+                                    <t t-foreach="exam_list" t-as="ex">
+                                        <t t-if="ex_first">
+                                           <span>Merit List (</span> <t t-esc="ex.class_id.name"/> <span> - </span><t t-esc="ex.academic_year.name"/><span>)</span>
+                                        </t>
+                                    </t>
+                                </h4></div>
+                            <div class="row">
+                                <table width="100%">
+
+                                        <tr><td rowspan="2">Roll</td><td rowspan="2">ID</td><td rowspan="2">Name</td><td rowspan="2">Category</td>
+                                            <t t-if="exam_count>1" >
+                                                <t t-foreach="exam_list" t-as="exam">
+                                                    <td colspan="3"><t t-esc="exam.exam_type.name"/></td>
+                                                </t>
+                                                <td colspan="3">Total</td><p>&lt;/tr&gt;</p><p>&lt;tr&gt;</p>
+                                                <t t-foreach="exam_list" t-as="exam">
+                                                    <td >Score</td><td class="rotate">Position In Class</td><td >Position In Section</td>
+                                                </t>
+                                                <td >Score</td><td >Position In Class</td><td >Position In Section</td>
+                                            </t>
+
+                                        <t t-else="">
+                                            <td  rowspan="2">Score</td><td colspan="2">Position In</td><p>&lt;/tr&gt;</p>
+                                            &lt;tr&gt;<td>Class</td><td>section</td>
+                                        </t>
+                                        </tr>
+                                        <t t-foreach="range(0,len(result))" t-as="i">
+                                            <tr>
+                                                <td><t t-esc="result.at[i,'student'].student_id.roll_no"/></td>
+                                                <td><t t-esc="result.at[i,'student'].student_id.student_id"/></td>
+                                                <!--<td><t t-esc="result.at[i,'exam'].name"/></td>-->
+                                                <td><t t-esc="result.at[i,'student'].student_id.name"/></td>
+                                                <td style="text-align: center;"><t t-esc="result.at[i,'student'].student_id.student_category"/></td>
+                                                <!--<td><t t-esc="result.at[i,'section']"/></td>-->
+                                                <t t-set="exam_no" t-value="exam"/>
+                                                <t t-foreach="exam_list" t-as="exam">
+                                                    <t t-set="exam_no" t-value="exam.id"/>
+                                                    <td><t t-esc="result.at[i,'score'+str(exam_no)]"/></td>
+                                                    <td><t t-esc="result.at[i,'merit_class' +str(exam_no)]"/></td>
+                                                    <td><t t-esc="result.at[i,'merit_section'+str(exam_no)]"/></td>
+                                                    <t t-if="exam_last">
+                                                        <t t-if="exam_count>1">
+                                                            <td><t t-esc="result.at[i,'score']"/></td>
+                                                            <td><t t-esc="result.at[i,'merit_class']"/></td>
+                                                            <td><t t-esc="result.at[i,'merit_section']"/></td>
+                                                        </t>
+                                                    </t>
+                                                </t>
+                                            </tr>
+                                    </t>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                     </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

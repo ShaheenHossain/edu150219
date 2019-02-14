@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_exam_academic_transcript1">
+            <t t-call="web.html_container">
+                <t t-foreach="get_students(docs)" t-as="student">
+
+
+                    <t t-call="web.external_layout">
+                        <style>
+                            table, th, td {
+                                     border: 1px solid black;
+                                    padding-bottom:3px;
+                                    padding-left:3px;
+                                    padding-top:3px;
+                                    padding-right:3px;
+                                    }
+                            .right_top{
+                            float:right;
+                            padding-top:0px;
+                            }
+                            .right{
+                            float:right;
+                            padding-top:10px;
+                            }
+
+                        </style>
+                        <div class="page">
+                            <div class="oe_structure">
+                                <div class="row">
+                                    <div class="right_top" >
+                                        <table>
+                                            <tr><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
+
+                                                <t t-foreach="get_gradings(o)" t-as="g">
+                                                    <tr><td> <span t-field="g.result"/></td>
+                                                        <td> <span t-field="g.min_per"/>-<span t-field="g.max_per"/>%</td>
+                                                        <td> <span t-field="g.score"/></td>
+                                                    </tr>
+                                                </t>
+
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="right" padding-top="10px">
+                                        <table>
+                                            <tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>
+                                            <tr><td> Number of Students:</td><td width="40px"></td><td> Behavior</td><td width="40px"></td></tr>
+                                            <tr><td> Total working days:</td><td></td><td> Sports Program:</td><td></td></tr>
+                                            <tr><td> Attendance:</td><td></td><td> Uniform:</td><td></td></tr>
+                                            <tr><td> Percentage of attendance:</td><td></td><td> Cultural Activities:</td><td></td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="left" padding-top="10px">
+                                        <table>
+                                            <tr><td>ID: </td><td><span t-field="student.student_id.student_id"/></td>
+                                                <td>Roll: </td><td><span t-field="student.student_id.roll_no"/></td>
+                                                <td>Section: </td><td><span t-field="student.student_id.class_id.section_id"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name: </td><td colspan="6"><span t-field="student.student_id.name"/></td>
+
+                                            </tr>
+                                             <tr>
+                                                <td colspan="2">father's Name: </td><td colspan="6"><span t-field="student.student_id.father_name.name"/></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Mother's Name: </td><td colspan="6"><span t-field="student.student_id.mother_name.name"/></td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <table width="100%">
+                                     <tr>
+                                          <t t-foreach="get_exams(docs)" t-as="exam">
+                                                <t t-if="exam_first">
+                                                    <td rowspan="2">Subject</td><td rowspan="2">Paper</td><td rowspan="2">Full Mark</td>
+                                                </t>
+                                                <td colspan="9">
+                                                    <span t-field="exam.name"/>
+                                                </td>
+
+                                           </t>
+                                     </tr>
+
+                                          <t t-foreach="get_exams(docs)" t-as="exam">
+                                              <t t-if="exam_first">
+                                                  <!--here I input <tr>-->
+                                             <p>&lt;tr&gt;</p>
+                                              </t>
+                                              <td>Tut</td><td>Sub</td><td>Obj</td><td>Prac</td><td>Total</td><td>Highest</td><td>LG</td><td>GP</td><td>GPA</td>
+                                                <t t-if="exam_last">
+                                                    <!--here I input </tr>-->
+
+                                                    <p>&lt;/tr&gt;</p>
+                                                </t>
+                                           </t>
+
+
+                                    <t t-foreach="get_subjects(student,docs)" t-as="subject">
+
+                                       <tr>
+                                           <t t-foreach="get_exams(docs)" t-as="exam">
+
+
+                                               <t t-if="exam_first">
+                                                   <td>
+                                                        <span t-field="subject.display"/>
+                                                   </td>
+                                                   <td>
+                                                       <span t-field="subject.paper"/>
+                                                   </td>
+                                                   <td>
+                                                       <span t-field="subject.total_mark"/>
+                                                   </td>
+                                               </t>
+
+                                                   <t t-set="highest" t-value="get_highest(exam,subject)"/>
+
+
+                                               <t t-foreach="get_marks(exam,subject,student)" t-as="mark">
+                                                  <td><span t-field="mark.tut_mark"/></td>
+                                                  <td><span t-field="mark.subj_mark"/></td>
+                                                  <td><span t-field="mark.obj_mark"/></td>
+                                                  <td><span t-field="mark.prac_mark"/></td>
+                                                  <td><span t-field="mark.mark_scored"/></td>
+                                                  <td><span t-field="highest.mark_scored"/></td>
+                                                  <td><span t-field="mark.letter_grade"/></td>
+                                                  <td><span t-field="mark.grade_point"/></td>
+                                                   <t t-if="subject_first"><td t-att-rowspan="get_row_count(student,exam)"> <span t-esc="get_gpa(student,exam)"/></td></t>
+                                                </t>
+                                            </t>
+                                       </tr>
+                                    </t>
+
+                                    </table>
+                                    <!--<div class="right_top" >-->
+                                        <!--<table>-->
+                                            <!--<tr><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>-->
+
+                                                <!--<t t-foreach="get_gradings(o)" t-as="g">-->
+                                                    <!--<tr><td> <span t-field="g.result"/></td>-->
+                                                        <!--<td> <span t-field="g.min_per"/>-<span t-field="g.max_per"/>%</td>-->
+                                                        <!--<td> <span t-field="g.score"/></td>-->
+                                                    <!--</tr>-->
+                                                <!--</t>-->
+
+                                        <!--</table>-->
+                                    <!--</div>-->
+
+                                </div>
+
+                                <!--<div class="row">-->
+                                     <!--<div class="right" padding-top="10px">-->
+                                        <!--<table>-->
+                                            <!--<tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>-->
+                                            <!--<tr><td> Number of Students:</td><td width="40px"></td><td> Behavior</td><td width="40px"></td></tr>-->
+                                            <!--<tr><td> Total working days:</td><td></td><td> Sports Program:</td><td></td></tr>-->
+                                            <!--<tr><td> Attendance:</td><td></td><td> Uniform:</td><td></td></tr>-->
+                                            <!--<tr><td> Percentage of attendance:</td><td></td><td> Cultural Activities:</td><td></td></tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                    <!--<div class="left">-->
+                                         <!--<table><tr><td><strong>ID : <span t-field="student.id"/></strong></td></tr>-->
+                                             <!--<tr><td><strong> name <span t-field="student.name"/>-->
+                                                        <!--<span t-field="student.middle_name"/>-->
+                                                        <!--<span t-field="student.last_name"/>-->
+                                                    <!--</strong></td></tr>-->
+                                             <!--<tr><td><strong> Father : <span t-field="student.father_name"/>-->
+                                                        <!--</strong></td></tr>-->
+                                             <!--<tr><td><strong> Mother : <span t-field="student.mother_name"/>-->
+                                                        <!--</strong></td> </tr>-->
+                                         <!--</table>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+                                <div class="row">
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

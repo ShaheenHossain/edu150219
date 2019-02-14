@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_dsblsc_marksheet">
+<style>
+
+                            .right_top{
+                            float:right;
+                            padding-top:65px;
+                            }
+                            .left_top{
+                            float:left;
+                            padding-top:65px;
+                            }
+                            .right{
+                            float:right;
+                            padding-top:10px;
+                            padding-left:80px;
+                            padding-right:10px;
+                            padding-bottom:10px;
+                            }
+
+                            .rotated {
+                            writing-mode: tb-rl;
+                            transform: rotate(-90deg);
+                             -webkit-transform: rotate(-90deg);
+                             -moz-transform: rotate(-90deg);
+                             -o-transform: rotate(-90deg);
+                             -ms-transform: rotate(-90deg);
+
+
+                            }
+                            .dont_split{
+                               page-break-inside: avoid;
+                                }
+
+
+
+</style>
+
+        <div class="header" style="width:100%">
+            <div style="width: 15%;float: left;">
+
+                <img src='/web/binary/company_logo' style="width:100%"/>
+            </div>
+            <div style="width: 67%;float: left; padding-left:10px">
+                <h4 style="text-transform: uppercase;  text-align: center;" t-if="res_company.name"><span t-field="res_company.name"/></h4>
+                <h5 style=" text-align: center;"><t t-if="res_company.street"><span t-field="res_company.street"/></t><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t><t t-if="res_company.country_id"><span t-field="res_company.country_id"/></t></h5>
+            </div>
+            <div style="width: 15%;float: left;">
+
+
+                <table >
+                     <style>
+                            table, th, td {
+                                     border: 1px solid black;
+                                    padding-bottom:3px;
+                                    padding-left:3px;
+                                    padding-top:3px;
+                                    padding-right:3px;
+                                    align:center;
+                                    text-align: center;
+                                    }
+                        </style>
+                </table>
+            </div>
+ <div class="row" text-align="center" width="100%">
+                                        <div  style="position: absolute;
+                                            left: 0;
+                                            top: 90px;
+                                            width: 100%;
+                                            text-align: center;
+                                            font-size: 18px;">
+                                                <h4>Academic Transcript</h4>
+
+                                        </div>
+                                    </div>
+
+        </div>
+
+        <div class="article o_report_layout_blank">
+          <t t-raw="0" />
+        </div>
+
+        <div class="footer o_boxed_footer">
+            <div class="text-center">
+
+                <div>
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+        <template id="report_dsblsc_marksheet">
+            <t t-call="web.html_container">
+                <t t-call="education_exam.external_layout_dsblsc_marksheet">
+                    <t t-esc="get_exams(docs)"/>
+                </t></t>
+        </template>
+
+    </data>
+</odoo>
